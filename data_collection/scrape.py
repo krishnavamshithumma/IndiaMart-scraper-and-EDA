@@ -48,8 +48,8 @@ COMMON_PARAMS = {
     "geo_country_info.geo_country_code": "IN",
     "implicit_info.for_country.type": "India",
     "implicit_info.for_country.data": "IN",
-    #change this api key as per your account
-    "AK": "eyJ0eXAiOiJKV1QiLCJhbGciOiJzaGEyNTYifQ.eyJpc3MiOiJVU0VSIiwiYXVkIjoiOSo5KjQqMyo2KiIsImV4cCI6MTc0ODk2MzQ0MCwiaWF0IjoxNzQ4ODc3MDQwLCJzdWIiOiIxODk5MTY2NTMiLCJjZHQiOiIwMi0wNi0yMDI1In0.1owVvUCr8Xkek9uX3NCSNDuPh3QvsYk_4Mur6NQwyyw" 
+    #change this auth token as per your account
+    "AK": "#paste your auth token here" 
 }
 
 def clean_isq(isq_list):
