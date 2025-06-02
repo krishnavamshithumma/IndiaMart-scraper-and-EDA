@@ -5,11 +5,11 @@ import time
 from datetime import datetime
 from urllib.parse import urlparse
 
-# --- Load Queries from JSON ---
+# Load Queries from JSON 
 with open("queries.json", "r") as f:
-    queries = json.load(f)  # e.g., ["electronics", "textiles", "mobiles"]
+    queries = json.load(f) 
 
-# --- Setup SQLite ---
+# Setup SQLite
 conn = sqlite3.connect("indiamart_data.db")
 cursor = conn.cursor()
 cursor.execute("""
@@ -36,7 +36,6 @@ ON indiamart_products(title, companyname, desktop_title_url)
 
 conn.commit()
 
-# --- Constants ---
 BASE_URL = "https://dir.indiamart.com/api/search.rp"
 HEADERS = {"User-Agent": "Mozilla/5.0"}
 COMMON_PARAMS = {
@@ -61,10 +60,10 @@ def transform_date(date_str):
     except:
         return None
 
-# --- Scrape and Store ---
+#  Scrape and Store 
 for query in queries:
     page = 1
-    print(f"\n🔍 Scraping for query: '{query}'")
+    print(f"\nScraping for query: '{query}'")
     while True:
         params = COMMON_PARAMS.copy()
         params["q"] = query
@@ -72,7 +71,7 @@ for query in queries:
 
         response = requests.get(BASE_URL, headers=HEADERS, params=params)
         if response.status_code != 200:
-            print(f"❌ Failed page {page} for {query}")
+            print(f"Failed page {page} for {query}")
             break
 
         data = response.json()
@@ -105,11 +104,11 @@ for query in queries:
             """, row)
         conn.commit()
 
-        print(f"✅ Page {page} complete")
+        print(f"Page {page} complete")
         if not data.get("nextPage"):
             break
         page += 1
         time.sleep(1)
 
 conn.close()
-print("\n🎉 All data saved to SQLite DB: 'indiamart_data.db'")
+print("\nAll data saved to SQLite DB: 'indiamart_data.db'")
