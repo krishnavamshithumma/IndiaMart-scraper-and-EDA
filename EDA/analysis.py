@@ -5,7 +5,7 @@ import seaborn as sns
 import re
 
 # Connect to SQLite DB
-conn = sqlite3.connect("/home/vamsi/Desktop/slooze_assignment/data_collection/indiamart_data.db")
+conn = sqlite3.connect("../data_collection/indiamart_data.db") #paste your db path here
 
 # Load data
 df = pd.read_sql_query("SELECT * FROM indiamart_products", conn)
